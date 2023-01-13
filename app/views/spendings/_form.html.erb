@@ -1,0 +1,32 @@
+<%= form_with(model: spending) do |form| %>
+  <% if spending.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(spending.errors.count, "error") %> prohibited this spending from being saved:</h2>
+
+      <ul>
+        <% spending.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :category %>
+    <%= form.text_field :category %>
+  </div>
+
+  <div class="field">
+    <%= form.label :amount %>
+    <%= form.text_field :amount %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
