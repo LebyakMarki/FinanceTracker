@@ -11,22 +11,27 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
+  <div class="field ">
+    <p>
+      <%= form.text_field :description, class:"form-control", placeholder:"Description"%>
+    </p>
   </div>
 
   <div class="field">
-    <%= form.label :category %>
-    <%= form.text_field :category %>
+    <p>
+      <%= form.text_field :amount, class:"form-control", placeholder:"Amount" %>
+    </p>
   </div>
 
   <div class="field">
-    <%= form.label :amount %>
-    <%= form.text_field :amount %>
+    <p>
+      <%= form.select :category, ['Traveling', 'Clothing', 'Taxi', 'Cafes', 'Shops', 'Other'], {}, {class: "form-control"} %>
+    </p>
   </div>
+
+
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class:"btn btn-secondary" %>
   </div>
 <% end %>
