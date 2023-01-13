@@ -11,13 +11,40 @@
           <%= link_to 'Show', spendings_path, class: "nav-link" %>
         </li>
 
-        <li class="nav-item">
-          <%= link_to 'Add', new_spending_path, class: "nav-link" %>
-        </li>
+
 
         <li class="nav-item">
           <%= link_to 'About', home_about_path, class: "nav-link" %>
         </li>
+
+
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to 'Add', new_spending_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Edit Profile', edit_user_registration_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: "nav-link" %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to 'Register', new_user_registration_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Login', new_user_session_path, class: "nav-link" %>
+          </li>
+        <% end %>
+
+
+
+
+
+
+
+
+
 
 
 
