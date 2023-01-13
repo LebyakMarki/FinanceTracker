@@ -10,14 +10,12 @@
         <li class="nav-item">
           <%= link_to 'Show', spendings_path, class: "nav-link" %>
         </li>
-
-
-
         <li class="nav-item">
           <%= link_to 'About', home_about_path, class: "nav-link" %>
         </li>
+      </ul>
 
-
+      <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
           <li class="nav-item">
             <%= link_to 'Add', new_spending_path, class: "nav-link" %>
@@ -36,23 +34,13 @@
             <%= link_to 'Login', new_user_session_path, class: "nav-link" %>
           </li>
         <% end %>
-
-
-
-
-
-
-
-
-
-
-
-
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+
+<!--      <form class="d-flex" role="search">-->
+<!--        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">-->
+<!--        <button class="btn btn-outline-success" type="submit">Search</button>-->
+<!--      </form>-->
+
     </div>
   </div>
 </nav>
