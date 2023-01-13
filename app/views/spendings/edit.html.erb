@@ -1,10 +1,7 @@
-<p>
-<h1>Editing Spending</h1>
-</p>
-
-<br>
+<p><h1>Editing Spending</h1></p>
 
 <%= render 'form', spending: @spending %>
 
-<%= link_to 'Show', @spending %> |
-<%= link_to 'Back', spendings_path %>
+<br>
+<%= link_to 'Show', @spending, class:"btn btn-secondary" %>
+<%= link_to 'Back', spendings_path, class:"btn btn-dark" %>
