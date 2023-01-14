@@ -14,7 +14,7 @@
   # GET /spendings/new
   def new
     #@spending = Spending.new
-    @spending = current_user.spendings.build
+    @spending = current_user.spending.build()
   end
 
   # GET /spendings/1/edit
@@ -24,7 +24,7 @@
   # POST /spendings or /spendings.json
   def create
     #@spending = Spending.new(spending_params)
-    @spending = current_user.spendings.build(spending_params)
+    @spending = current_user.spending.build(spending_params)
 
     respond_to do |format|
       if @spending.save
