@@ -1,4 +1,4 @@
-class SpendingsController < ApplicationController
+ class SpendingsController < ApplicationController
   before_action :set_spending, only: %i[ show edit update destroy ]
 
   # GET /spendings or /spendings.json
@@ -65,6 +65,6 @@ class SpendingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def spending_params
-      params.require(:spending).permit(:description, :category, :amount)
+      params.require(:spending).permit(:description, :category, :amount, :user_id)
     end
 end
