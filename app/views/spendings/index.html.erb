@@ -1,34 +1,35 @@
-<p><h1>Spendings List</h1></p>
+<% if user_signed_in? %>
 
-<table class="table table-hover table-bordered">
-  <thead class="table-dark">
-    <tr>
-      <th>Description</th>
-      <th>Category</th>
-      <th>Amount</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <p><h1>Spendings List</h1></p>
+  <table class="table table-hover table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th>Description</th>
+        <th>Category</th>
+        <th>Amount</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @spendings.each do |spending| %>
+        <% if spending.user == current_user %>
+          <tr>
+            <td><%= spending.description %></td>
+            <td><%= spending.category %></td>
+            <td><%= spending.amount %></td>
+            <td><%= link_to 'Show', spending %></td>
+            <td><%= link_to 'Edit', edit_spending_path(spending) %></td>
+            <td><%= link_to 'Destroy', spending, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
 
-  <tbody>
-    <% @spendings.each do |spending| %>
-      <% if spending.user == current_user %>
-        <tr>
-          <td><%= spending.description %></td>
-          <td><%= spending.category %></td>
-          <td><%= spending.amount %></td>
-          <td><%= link_to 'Show', spending %></td>
-          <td><%= link_to 'Edit', edit_spending_path(spending) %></td>
-          <td><%= link_to 'Destroy', spending, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
       <% end %>
+    </tbody>
+  </table>
+  <br>
+  <%= link_to 'Add Spending', new_spending_path, class:"btn btn-outline-success" %>
 
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'Add Spending', new_spending_path, class:"btn btn-outline-success" %>
-
+<% else %>
+  <p><h1> You should register to see your spendings </h1></p>
+<% end %>
 
