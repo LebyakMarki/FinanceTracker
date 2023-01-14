@@ -1,6 +1,7 @@
  class SpendingsController < ApplicationController
   before_action :set_spending, only: %i[ show edit update destroy ]
-
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :correct_user, only: %i[edit update destroy]
   # GET /spendings or /spendings.json
   def index
     @spendings = Spending.all
@@ -12,7 +13,8 @@
 
   # GET /spendings/new
   def new
-    @spending = Spending.new
+    #@spending = Spending.new
+    @spending = current_user.spendings.build
   end
 
   # GET /spendings/1/edit
@@ -21,7 +23,8 @@
 
   # POST /spendings or /spendings.json
   def create
-    @spending = Spending.new(spending_params)
+    #@spending = Spending.new(spending_params)
+    @spending = current_user.spendings.build(spending_params)
 
     respond_to do |format|
       if @spending.save
@@ -55,6 +58,11 @@
       format.html { redirect_to spendings_url, notice: "Spending was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def correct_user
+    @spending = current_user.spendings.find_by(id: params[:id])
+    redirect_to spendings_path, notice: "Not Authorized to edit this spending" if @spending.nil?
   end
 
   private

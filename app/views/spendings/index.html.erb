@@ -12,14 +12,17 @@
 
   <tbody>
     <% @spendings.each do |spending| %>
-      <tr>
-        <td><%= spending.description %></td>
-        <td><%= spending.category %></td>
-        <td><%= spending.amount %></td>
-        <td><%= link_to 'Show', spending %></td>
-        <td><%= link_to 'Edit', edit_spending_path(spending) %></td>
-        <td><%= link_to 'Destroy', spending, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <% if spending.user == current_user %>
+        <tr>
+          <td><%= spending.description %></td>
+          <td><%= spending.category %></td>
+          <td><%= spending.amount %></td>
+          <td><%= link_to 'Show', spending %></td>
+          <td><%= link_to 'Edit', edit_spending_path(spending) %></td>
+          <td><%= link_to 'Destroy', spending, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+
     <% end %>
   </tbody>
 </table>
