@@ -1,1 +1,31 @@
-<h1>Home page!</h1>
+<p>
+  <div class="card text-center">
+    <div class="card-header">
+      <h2>About Project</h2>
+    </div>
+    <div class="card-body">
+      <p>
+        <h5 class="card-title">Create minimal expenses tracking application using Ruby on Rails framework. There are no restrictions for the front-end part, please feel free to use any tool/framework.</h5>
+      </p>
+      <h5 class="card-text">Functional requirements:</h5>
+      <p>User should be able to sign up and sign in with the login and password (used devise gem)</p>
+      <p>User should be able to add/edit/delete the spending inside the app.</p>
+      <p>User should be able to see the list of his spendings with a total value, and filter the list on several parameters (e.g., category, amount).</p>
+      <p>User should be able to insert the description and amount for the spending entry.</p>
+      <p>User should be able to choose the spending category from the given list (Traveling, Clothing, Taxi, Cafes, Shops, Other).</p>
+      <p>User should be able to share the non-editable list of his spendings with another user.</p>
+
+      <h5 class="card-text">Non-functional requirements:</h5>
+      <p>Please add an adequate number of automated tests.</p>
+      <p>Please develop your application at GitHub and commit your changes often.</p>
+      <p>Please deploy your application online. Consider using any free service you know.</p>
+      <p>Please add instructions about installing and running your application on Github.</p>
+
+
+      <br>
+      <p> Click Register and Test this Tracker: </p>
+      <p><%= link_to 'Register', new_user_registration_path, class: "btn btn-primary" %></p>
+
+    </div>
+  </div>
+</p>
