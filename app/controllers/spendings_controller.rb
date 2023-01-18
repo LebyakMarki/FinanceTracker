@@ -8,7 +8,9 @@
   end
 
   def list
-    spendings = Spending.order("#{params[:column]} #{params[:direction]}")
+    spendings = Spending.all
+    spendings = spendings.where('description like ?', "%#{params[:description]}%") if params[:description].present?
+    spendings = spendings.order("#{params[:column]} #{params[:direction]}")
     render(template: "spendings/_spendings", locals: { spendings: spendings })
   end
 

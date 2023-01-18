@@ -1,7 +1,21 @@
 <% if user_signed_in? %>
   <p><h1>Spendings List</h1></p>
 
+  <p>
+    <div class="container-fluid justify-content-start">
+      <%= form_with url: list_spendings_path, class:"d-flex", method: :get, data: { controller: "search-form", search_form_target: "form", turbo_frame: "spendings" } do |form| %>
+        <%= form.text_field :description,
+                            placeholder: "Search by description",
+                            class:"form-control me-2",
+                            autocomplete: "off",
+                            data: { action: "input->search-form#search" }
+        %>
+      <% end %>
+    </div>
+  </p>
+
   <%= turbo_frame_tag "spendings" do %>
+
     <table class="table table-hover table-bordered">
       <thead class="table-dark">
         <tr>
@@ -30,12 +44,19 @@
             </tr>
           <% end %>
         <% end %>
+        <tr>
+          <th colspan="2">Total Amount:</th>
+          <td> <%= spendings.select {|spending| spending.user == current_user}.map{|spending| spending.amount.to_d.round(2)}.sum %> </td>
+          <th colspan="3"></th>
+        </tr>
       </tbody>
     </table>
   <% end %>
 
-  <br>
-  <%= link_to 'Add Spending', new_spending_path, class:"btn btn-outline-success" %>
+  <p>
+    <%= link_to 'Add Spending', new_spending_path, class:"btn btn-outline-success" %>
+  </p>
+
 
 <% else %>
   <p><h1> You should register to see your spendings </h1></p>
