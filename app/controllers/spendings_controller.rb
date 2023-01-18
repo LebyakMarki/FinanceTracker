@@ -7,6 +7,11 @@
     @spendings = Spending.all
   end
 
+  def list
+    spendings = Spending.order("#{params[:column]} #{params[:direction]}")
+    render(partial: 'spendings', locals: { spendings: spendings })
+  end
+
   # GET /spendings/1 or /spendings/1.json
   def show
   end
@@ -53,7 +58,6 @@
   # DELETE /spendings/1 or /spendings/1.json
   def destroy
     @spending.destroy
-
     respond_to do |format|
       format.html { redirect_to spendings_url, notice: "Spending was successfully destroyed." }
       format.json { head :no_content }
@@ -61,7 +65,8 @@
   end
 
   def correct_user
-    @spending = current_user.spendings.find_by(id: params[:id])
+    puts current_user.inspect
+    @spending = current_user.spending.find_by(id: params[:id])
     redirect_to spendings_path, notice: "Not Authorized to edit this spending" if @spending.nil?
   end
 

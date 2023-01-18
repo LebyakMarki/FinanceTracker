@@ -1,35 +1,5 @@
-<% if user_signed_in? %>
+<div>
+  <%= render "spendings", spendings: @spendings %>
+</div>
 
-  <p><h1>Spendings List</h1></p>
-  <table class="table table-hover table-bordered">
-    <thead class="table-dark">
-      <tr>
-        <th>Description</th>
-        <th>Category</th>
-        <th>Amount</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @spendings.each do |spending| %>
-        <% if spending.user == current_user %>
-          <tr>
-            <td><%= link_to spending.description, spending %></td>
-            <td><%= spending.category %></td>
-            <td><%= spending.amount %></td>
-            <td><%= link_to 'Show', spending %></td>
-            <td><%= link_to 'Edit', edit_spending_path(spending) %></td>
-            <td><%= link_to 'Delete', spending, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-outline-danger btn-sm" %></td>
-          </tr>
-        <% end %>
-
-      <% end %>
-    </tbody>
-  </table>
-  <br>
-  <%= link_to 'Add Spending', new_spending_path, class:"btn btn-outline-success" %>
-
-<% else %>
-  <p><h1> You should register to see your spendings </h1></p>
-<% end %>
 
