@@ -9,7 +9,7 @@
 
   def list
     spendings = Spending.order("#{params[:column]} #{params[:direction]}")
-    render(partial: 'spendings', locals: { spendings: spendings })
+    render(template: "spendings/_spendings", locals: { spendings: spendings })
   end
 
   # GET /spendings/1 or /spendings/1.json
@@ -65,7 +65,6 @@
   end
 
   def correct_user
-    puts current_user.inspect
     @spending = current_user.spending.find_by(id: params[:id])
     redirect_to spendings_path, notice: "Not Authorized to edit this spending" if @spending.nil?
   end
