@@ -4,20 +4,37 @@
   <p>
     <div class="container-fluid justify-content-start">
       <%= form_with url: list_spendings_path, class:"d-flex", method: :get, data: { controller: "search-form", search_form_target: "form", turbo_frame: "spendings" } do |form| %>
+
+        <%= form.number_field :amount_from,
+                            placeholder: "Amount From",
+                            class:"form-control me-2",
+                            autocomplete: "off",
+                            data: { action: "input->search-form#search" }
+        %>
+
+        <%= form.number_field :amount_to,
+                            placeholder: "Amount To",
+                            class:"form-control me-2",
+                            autocomplete: "off",
+                            data: { action: "input->search-form#search" }
+        %>
+
         <%= form.select :category,
                         options_for_select(
                           Spending.pluck(:category),
                           session.dig('spending_filters', 'category')
                         ),
                         { include_blank: 'All Categories' },
-                        class: "form-control"
+                        class: "form-control me-2"
         %>
+
         <%= form.text_field :description,
                             placeholder: "Search by description",
                             class:"form-control me-2",
                             autocomplete: "on",
                             data: { action: "input->search-form#search" }
         %>
+
         <%= form.submit "Search", class:"btn btn-secondary"  %>
       <% end %>
     </div>
