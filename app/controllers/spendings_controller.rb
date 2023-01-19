@@ -5,7 +5,7 @@
   include Filterable
   # GET /spendings or /spendings.json
   def index
-    @spendings = Spending.all
+    @spendings = filter!(Spending)
   end
 
   def list

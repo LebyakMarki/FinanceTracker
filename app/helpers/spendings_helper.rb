@@ -1,9 +1,9 @@
 module SpendingsHelper
   def build_order_link(column:, label:)
     if column == session.dig('spending_filters', 'column')
-      link_to(label, list_spendings_path(column: column, direction: next_direction))
+      link_to(label, list_spendings_path(column: column, direction: next_direction), class:"link-light")
     else
-      link_to(label, list_spendings_path(column: column, direction: 'asc'))
+      link_to(label, list_spendings_path(column: column, direction: 'asc'), class:"link-light")
     end
   end
 
