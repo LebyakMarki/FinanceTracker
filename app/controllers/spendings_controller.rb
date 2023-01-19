@@ -2,15 +2,14 @@
   before_action :set_spending, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, except: [:index, :show]
   before_action :correct_user, only: %i[edit update destroy]
+  include Filterable
   # GET /spendings or /spendings.json
   def index
     @spendings = Spending.all
   end
 
   def list
-    spendings = Spending.all
-    spendings = spendings.where('description like ?', "%#{params[:description]}%") if params[:description].present?
-    spendings = spendings.order("#{params[:column]} #{params[:direction]}")
+    spendings = filter!(Spending)
     render(template: "spendings/_spendings", locals: { spendings: spendings })
   end
 
