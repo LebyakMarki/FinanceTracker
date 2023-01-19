@@ -1,6 +1,6 @@
 module SpendingsHelper
-  def sort_link(column:, label:)
-    if column == params[:column]
+  def build_order_link(column:, label:)
+    if column == session.dig('spending_filters', 'column')
       link_to(label, list_spendings_path(column: column, direction: next_direction))
     else
       link_to(label, list_spendings_path(column: column, direction: 'asc'))
@@ -8,7 +8,11 @@ module SpendingsHelper
   end
 
   def next_direction
-    params[:direction] == 'asc' ? 'desc' : 'asc'
+    session['spending_filters']['direction'] == 'asc' ? 'desc' : 'asc'
+  end
+
+  def sort_indicator
+    tag.span(class: "sort sort-#{session['spending_filters']['direction']}")
   end
 
 end

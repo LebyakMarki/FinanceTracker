@@ -4,12 +4,21 @@
   <p>
     <div class="container-fluid justify-content-start">
       <%= form_with url: list_spendings_path, class:"d-flex", method: :get, data: { controller: "search-form", search_form_target: "form", turbo_frame: "spendings" } do |form| %>
+        <%= form.select :category,
+                        options_for_select(
+                          Spending.pluck(:category),
+                          session.dig('spending_filters', 'category')
+                        ),
+                        { include_blank: 'All Categories' },
+                        class: "form-control"
+        %>
         <%= form.text_field :description,
                             placeholder: "Search by description",
                             class:"form-control me-2",
-                            autocomplete: "off",
+                            autocomplete: "on",
                             data: { action: "input->search-form#search" }
         %>
+        <%= form.submit "Search", class:"btn btn-secondary"  %>
       <% end %>
     </div>
   </p>
@@ -20,13 +29,16 @@
       <thead class="table-dark">
         <tr>
           <th id="spendings-description">
-            <%= sort_link(column: "description", label: "Description") %>
+            <%= sort_indicator if session.dig('spending_filters', 'description') == "description" %>
+            <%= build_order_link(column: "description", label: "Description") %>
           </th>
           <th id="spendings-category">
-            <%= sort_link(column: "category", label: "Category") %>
+            <%= sort_indicator if session.dig('spending_filters', 'column') == "category" %>
+            <%= build_order_link(column: "category", label: "Category") %>
           </th>
           <th id="spendings-amount">
-            <%= sort_link(column: "amount", label: "Amount") %>
+            <%= sort_indicator if session.dig('spending_filters', 'column') == "amount" %>
+            <%= build_order_link(column: "amount", label: "Amount") %>
           </th>
           <th colspan="3"></th>
         </tr>
@@ -55,8 +67,8 @@
 
   <p>
     <%= link_to 'Add Spending', new_spending_path, class:"btn btn-outline-success" %>
+    <%= link_to 'Share Table', new_spending_path, class:"btn btn-outline-primary" %>
   </p>
-
 
 <% else %>
   <p><h1> You should register to see your spendings </h1></p>
