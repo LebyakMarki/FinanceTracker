@@ -1,5 +1,6 @@
 class Spending < ApplicationRecord
   belongs_to :user
+  has_many :shares
 
   FILTER_PARAMS = %i[description amount_from amount_to category column direction].freeze
 
