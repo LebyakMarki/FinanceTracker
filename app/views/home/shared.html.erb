@@ -1,0 +1,39 @@
+<p>
+  <h1>Shared Spendings</h1>
+</p>
+
+<p>
+  <div class="card">
+    <div class="card-header">
+      Share spending by email
+    </div>
+
+    <div class="card-body">
+      <h5 class="card-title">Enter email of your friend to share spending</h5>
+      <p>
+        <%= form_with(model: @share, class:"d-flex") do |form| %>
+          <%= form.text_field :email,
+                              placeholder: "Enter email",
+                              class:"form-control me-2",
+                              autocomplete: "on"
+          %>
+          <%= form.submit "Share", class:"btn btn-secondary"  %>
+        <% end %>
+      </p>
+    </div>
+  </div>
+</p>
+
+<p>
+  <div class="card text-center">
+    <div class="card-header">
+      Shared spendings with me
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Special title treatment</h5>
+      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    </div>
+  </div>
+</p>
+
+
